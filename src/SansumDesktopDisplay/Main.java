@@ -1,6 +1,7 @@
 package SansumDesktopDisplay;
 
 import com.backendless.Backendless;
+import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,12 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1024, 768));
         primaryStage.show();
         primaryStage.setFullScreen(true);
+    }
+
+    @Override
+    public void stop(){
+        PlatformImpl.tkExit();
+        System.exit(0);
     }
 
 
