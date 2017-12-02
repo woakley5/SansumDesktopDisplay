@@ -12,10 +12,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("Display.fxml"));
-        primaryStage.setTitle("Call Center Display");
+        primaryStage.setTitle("Main Display");
         primaryStage.setScene(new Scene(root, 1024, 768));
         primaryStage.show();
-        //primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
     }
 
 

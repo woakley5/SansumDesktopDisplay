@@ -1,59 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SansumDesktopDisplay.Display">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1177.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SansumDesktopDisplay.Display">
    <children>
-      <LineChart fx:id="graph" layoutY="407.0" prefHeight="353.0" prefWidth="1024.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-        <xAxis>
-          <NumberAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
-      <ImageView fitHeight="163.0" fitWidth="232.0" layoutX="36.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="13.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="1177.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="5000.0" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="-3629.0">
+         <fill>
+            <LinearGradient endX="0.48076923076923067" endY="0.31250000000000006" startX="0.49038461538461536" startY="0.9567307692307693">
+               <stops>
+                  <Stop color="#0093c9" />
+                  <Stop color="#ffffff00" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <ImageView fitHeight="302.0" fitWidth="502.0" layoutX="56.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="46.0">
          <image>
             <Image url="@resources/logo2.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="490.0" layoutY="52.0" prefHeight="91.0" prefWidth="478.0" text="Current Wait Time:" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="52.0">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutY="376.0" prefHeight="456.0" prefWidth="1360.0" text="-" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="376.0">
          <font>
-            <Font name="Avenir Roman" size="52.0" />
+            <Font name="Helvetica Neue Bold" size="450.0" />
          </font>
       </Label>
-      <Label fx:id="waitLabel" alignment="CENTER" layoutX="463.0" layoutY="78.0" prefHeight="303.0" prefWidth="533.0" text="-" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="78.0">
+      <Label alignment="CENTER" layoutY="880.0" prefHeight="17.0" prefWidth="853.0" text="minutes" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="880.0">
          <font>
-            <Font name="Avenir Heavy" size="220.0" />
+            <Font name="Helvetica Neue Bold" size="42.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="525.0" layoutY="316.0" prefHeight="91.0" prefWidth="408.0" text="minutes" AnchorPane.rightAnchor="91.0" AnchorPane.topAnchor="316.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6ec171" height="85.0" layoutX="-11.0" layoutY="1113.0" stroke="BLACK" strokeType="INSIDE" width="5000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="-3629.0" />
+      <Label fx:id="messageLabel" alignment="CENTER" layoutX="10.0" layoutY="469.0" prefHeight="75.0" prefWidth="1360.0" text="-" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
-            <Font name="Avenir Roman" size="41.0" />
+            <Font name="Helvetica Neue" size="38.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="78.0" layoutY="154.0" prefHeight="83.0" prefWidth="319.0" text="Average Wait Today:" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="154.0">
+      <Label alignment="CENTER" layoutY="327.0" prefHeight="97.0" prefWidth="1360.0" text="Current Urgent Care Wait Time:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="327.0">
          <font>
-            <Font name="Avenir Roman" size="33.0" />
-         </font>
-      </Label>
-      <Label fx:id="avgWaitLabel" alignment="CENTER" layoutX="34.0" layoutY="211.0" prefHeight="91.0" prefWidth="408.0" text="-" AnchorPane.leftAnchor="34.0" AnchorPane.topAnchor="211.0">
-         <font>
-            <Font name="Avenir Heavy" size="120.0" />
-         </font>
-      </Label>
-      <Label alignment="CENTER" layoutX="79.0" layoutY="331.0" prefHeight="83.0" prefWidth="319.0" text="minutes" AnchorPane.leftAnchor="79.0" AnchorPane.topAnchor="331.0">
-         <font>
-            <Font name="Avenir Roman" size="33.0" />
+            <Font name="Helvetica Neue Bold" size="65.0" />
          </font>
       </Label>
    </children>

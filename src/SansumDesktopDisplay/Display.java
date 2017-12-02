@@ -5,19 +5,30 @@ import com.backendless.IDataStore;
 import com.backendless.async.callback.AsyncCallback;
 import com.backendless.exceptions.BackendlessFault;
 import com.backendless.persistence.DataQueryBuilder;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Display {
 
-    public Label waitLabel;
-    public Label avgWaitLabel;
-    public LineChart graph;
+
+    public Label timeLabel;
+    public Label messageLabel;
+
+    public int messageNumber = 0;
+    public ArrayList<String> messages = new ArrayList<>();
+
+    public Timer messageTimer = new Timer();
 
     public Display(){
         Timer updateTimer = new Timer();
@@ -28,6 +39,7 @@ public class Display {
             }
         };
         updateTimer.schedule(updateTask, 1000, 60000);
+        queryForMessages();
     }
 
     public void updateTime(){
@@ -39,17 +51,13 @@ public class Display {
             public void handleResponse( List<Map> foundTimes )
             {
                 ArrayList<Integer> times = new ArrayList<>();
-                Integer average = 0;
 
                 for(int x = 0; x < foundTimes.size(); x++){
                     Integer time = (Integer) foundTimes.get(x).get("Time");
                     times.add(time);
-                    average += time;
                 }
-                average /= foundTimes.size();
+
                 updateWaitLabel(String.valueOf(times.get(0)));
-                updateAverageLabel(String.valueOf(average));
-                updateGraph(times);
             }
             @Override
             public void handleFault( BackendlessFault fault )
@@ -59,45 +67,98 @@ public class Display {
         });
     }
 
-    public void updateWaitLabel(String time){
-        Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
-                waitLabel.setText(time);
-            }
-        });
+    public void updateMessage(){
+        Platform.runLater(
+                () -> {
+                    if(messageNumber < messages.size()){
+                        TranslateTransition moveOut = new TranslateTransition(Duration.millis(1500), messageLabel);
+                        moveOut.setToY(150);
+                        moveOut.play();
+                        moveOut.setOnFinished(new EventHandler<ActionEvent>() {
 
-
+                            @Override
+                            public void handle(ActionEvent event) {
+                                messageLabel.setText(messages.get(messageNumber));
+                                messageNumber++;
+                                TranslateTransition moveIn = new TranslateTransition(Duration.millis(1500), messageLabel);
+                                moveIn.setToY(0);
+                                moveIn.play();
+                            }
+                        });
+                    }
+                    else{
+                        messageNumber = 0;
+                        messageTimer.cancel();
+                        messageTimer.purge();
+                        queryForMessages();
+                    }
+                }
+        );
     }
 
-    public void updateAverageLabel(String time){
-        Platform.runLater(new Runnable(){
+    public void queryForMessages(){
+        System.out.println("Updating Messages");
+        DataQueryBuilder queryBuilder = DataQueryBuilder.create();
+        Backendless.Persistence.of( "Messages" ).find(queryBuilder, new AsyncCallback<List<Map>>(){
             @Override
-            public void run() {
-                avgWaitLabel.setText(time);
-            }
-        });
-    }
-
-    public void updateGraph(ArrayList<Integer> times){
-        Platform.runLater(new Runnable(){
-            @Override
-            public void run() {
-
-                graph.getData().clear();
-
-                XYChart.Series series = new XYChart.Series();
-
-                series.setName("Recent Times");
-
-                for(int x = 0; x < times.size(); x++){
-                    series.getData().add(new XYChart.Data(x + 1, times.get(times.size() - 1 - x)));
-
+            public void handleResponse( List<Map> foundMessages )
+            {
+                messages.clear();
+                for(int x = 0; x < foundMessages.size(); x++){
+                    messages.add((String)foundMessages.get(x).get("Message"));
                 }
 
-                graph.getData().add(series);
+                scheduleMessageTimer();
+
+            }
+            @Override
+            public void handleFault( BackendlessFault fault )
+            {
+                System.out.println("Error");
             }
         });
     }
 
+    public void scheduleMessageTimer(){
+        Platform.runLater(
+                () -> {
+                    TimerTask updateTask = new TimerTask() {
+                        @Override
+                        public void run() {
+                            updateMessage();
+                        }
+                    };
+                    messageTimer = new Timer();
+                    messageTimer.schedule(updateTask, 1000, 30000);
+                }
+        );
+    }
+
+    public void updateWaitLabel(String time){
+        Platform.runLater(
+                () -> {
+                    FadeTransition ft = new FadeTransition(Duration.millis(1000), timeLabel);
+                    ft.setFromValue(1.0);
+                    ft.setToValue(0.0);
+                    ft.setCycleCount(1);
+                    ft.setAutoReverse(false);
+                    ft.play();
+                    ft.setOnFinished(new EventHandler<ActionEvent>() {
+
+                        @Override
+                        public void handle(ActionEvent event) {
+                            timeLabel.setText(time);
+                            FadeTransition ft2 = new FadeTransition(Duration.millis(1000), timeLabel);
+                            ft2.setFromValue(0.0);
+                            ft2.setToValue(1.0);
+                            ft2.setCycleCount(1);
+                            ft2.setAutoReverse(false);
+                            ft2.play();
+                        }
+                    });
+                }
+        );
+
+
+    }
 }
