@@ -8,7 +8,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="922.0" prefWidth="1475.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SansumDesktopDisplay.Display">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SansumDesktopDisplay.Display">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" height="1177.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="5000.0" AnchorPane.bottomAnchor="-11.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="-3629.0">
          <fill>
@@ -20,17 +20,17 @@
             </LinearGradient>
          </fill>
       </Rectangle>
-      <ImageView fitHeight="219.0" fitWidth="348.0" layoutX="56.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="56.0" AnchorPane.topAnchor="46.0">
+      <ImageView fitHeight="187.0" fitWidth="288.0" layoutX="32.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="22.0">
          <image>
             <Image url="@resources/logo2.png" />
          </image>
       </ImageView>
-      <Label fx:id="timeLabel" alignment="CENTER" layoutY="358.0" prefHeight="409.0" prefWidth="1475.0" text="-" AnchorPane.bottomAnchor="155.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="358.0">
+      <Label fx:id="timeLabel" alignment="CENTER" layoutY="206.0" prefHeight="362.0" prefWidth="1366.0" text="-" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="206.0">
          <font>
-            <Font name="Helvetica Neue Bold" size="315.0" />
+            <Font name="Helvetica Neue Bold" size="300.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutY="744.0" prefHeight="85.0" prefWidth="1475.0" text="minutes" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label alignment="CENTER" layoutY="553.0" prefHeight="85.0" prefWidth="1475.0" text="minutes" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font name="Helvetica Neue Bold" size="42.0" />
          </font>
@@ -41,9 +41,9 @@
             <Font name="Helvetica Neue" size="38.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutY="258.0" prefHeight="97.0" prefWidth="1360.0" text="Current Urgent Care Wait Time:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
+      <Label alignment="CENTER" layoutY="142.0" prefHeight="97.0" prefWidth="1360.0" text="Current Urgent Care Wait Time:" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="142.0">
          <font>
-            <Font name="Helvetica Neue Bold" size="65.0" />
+            <Font name="Helvetica Neue Bold" size="44.0" />
          </font>
       </Label>
    </children>
