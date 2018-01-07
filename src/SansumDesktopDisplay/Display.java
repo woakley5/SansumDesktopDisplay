@@ -147,7 +147,31 @@ public class Display {
 
                         @Override
                         public void handle(ActionEvent event) {
-                            timeLabel.setText(time);
+                            int hours = Integer.parseInt(time) / 60;
+                            int minutes = Integer.parseInt(time) % 60;
+                            String hourText;
+                            String minuteText;
+
+                            if(hours == 0){
+                                hourText = "";
+                            }
+                            else if(hours == 1){
+                                hourText = hours + " hour\n";
+                            }
+                            else{
+                                hourText = hours + " hours\n";
+                            }
+
+                            if(minutes == 0){
+                                minuteText = "";
+                            }
+                            else if(minutes == 1){
+                                minuteText = minutes + " minutes";
+                            }
+                            else{
+                                minuteText = minutes + " minutes";
+                            }
+                            timeLabel.setText(hourText + minuteText);
                             FadeTransition ft2 = new FadeTransition(Duration.millis(1000), timeLabel);
                             ft2.setFromValue(0.0);
                             ft2.setToValue(1.0);
