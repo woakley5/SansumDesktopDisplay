@@ -147,8 +147,11 @@ public class Display {
 
                         @Override
                         public void handle(ActionEvent event) {
+                            System.out.println("Time: " + time);
                             int hours = Integer.parseInt(time) / 60;
                             int minutes = Integer.parseInt(time) % 60;
+                            System.out.println("Hours: " + hours);
+                            System.out.println("Mins: " + minutes);
                             String hourText;
                             String minuteText;
 
