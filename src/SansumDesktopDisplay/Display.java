@@ -165,14 +165,18 @@ public class Display {
                                 hourText = hours + " hours";
                             }
 
+                            if(minutes != 0 && hours != 0){
+                                hourText += " and\n";
+                            }
+
                             if(minutes == 0){
                                 minuteText = "";
                             }
                             else if(minutes == 1){
-                                minuteText = " and\n" +  minutes + " minutes";
+                                minuteText = minutes + " minutes";
                             }
                             else{
-                                minuteText = " and\n" + minutes + " minutes";
+                                minuteText = minutes + " minutes";
                             }
                             timeLabel.setText(hourText + minuteText);
                             FadeTransition ft2 = new FadeTransition(Duration.millis(1000), timeLabel);
